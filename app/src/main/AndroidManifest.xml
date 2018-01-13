@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sys1.splitmoney">
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -21,7 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
+        <!--most imp for contact display-->
+        <activity
+            android:name=".ContactsPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+        </activity>
         <activity android:name=".Main3Activity"></activity>
     </application>
 
