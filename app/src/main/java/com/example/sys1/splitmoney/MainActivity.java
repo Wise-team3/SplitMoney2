@@ -14,8 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    TextView contactsDisplay;
+    Button pickContacts;
+    final int CONTACT_PICK_REQUEST = 1000;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -51,22 +59,22 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-     /*   fab.setOnClickListener(new View.OnClickListener() {
+      fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                  //       .setAction("Action", null).show();
-                Intent i=new Intent(MainActivity.this,MainActivity.class);
+                Intent i=new Intent(MainActivity.this,Main3Activity.class);
                 startActivity(i);
             }
-        });*/
-     fab.setOnClickListener(new View.OnClickListener() {
+        });
+   /*  fab.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
-             Intent i=new Intent(MainActivity.this,Main2Activity.class);
+           Intent i=new Intent(MainActivity.this,Main2Activity.class);
              startActivity(i);
          }
-     });
+     });*/
 
     }
 
@@ -166,4 +174,5 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
 }
