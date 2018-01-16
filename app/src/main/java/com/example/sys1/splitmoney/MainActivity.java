@@ -18,13 +18,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 public class MainActivity extends AppCompatActivity {
     TextView contactsDisplay;
     Button pickContacts;
     final int CONTACT_PICK_REQUEST = 1000;
-
+    private MobileServiceClient mClient;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -39,12 +42,33 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    public class TodoItem {
+        public String Id;
+        public String Text;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        try {
+            mClient = new MobileServiceClient(
+                    "https://splitmoney.azurewebsites.net",
+                    this
+            );
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        TodoItem item = new TodoItem();
+        item.Text = "Awesome item";
+        mClient.getTable(TodoItem.class).insert(item); /*,new TableOperationCallback<item>() {
+            public void onCompleted(TodoItem entity, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    // Insert succeeded
+                } else {
+                    // Insert failed
+                }
+            }
+        });*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -77,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
      });*/
 
     }
-
 
 
     @Override
